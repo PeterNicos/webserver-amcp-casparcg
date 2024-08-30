@@ -7,8 +7,9 @@ body {
   }
   
   .container {
-    max-width: 600px;
+    max-width: 900px;
     margin: 0 auto;
+    margin-bottom: 30px;
     background-color: #fff;
     padding: 30px;
     border-radius: 8px;
@@ -26,6 +27,7 @@ body {
   }
   
   label {
+    margin-top: 10px;
     margin-bottom: 10px;
     font-weight: bold;
   }
