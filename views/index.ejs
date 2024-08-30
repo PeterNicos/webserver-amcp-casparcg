@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CasparCG AMCP Sender</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>CasparCG AMCP Command Sender</h1>
+    <form action="/send-command" method="POST">
+      <label for="command">AMCP Command:</label>
+      <input type="text" id="command" name="command" required placeholder="z.B. INFO">
+      <button type="submit">Senden</button>
+    </form>
+
+    <% if (response) { %>
+      <div class="response">
+        <h2>Antwort vom Server:</h2>
+        <pre><%= response %></pre>
+      </div>
+    <% } %>
+  </div>
+</body>
+</html>
