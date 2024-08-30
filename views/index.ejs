@@ -5,13 +5,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CasparCG AMCP Sender</title>
   <link rel="stylesheet" href="/css/styles.css">
+  <script>
+    // Funktion, um den ausgewählten Befehl in das Eingabefeld zu schreiben
+    function setCommand() {
+      const dropdown = document.getElementById("presetCommands");
+      const input = document.getElementById("command");
+      input.value = dropdown.value;
+    }
+  </script>
 </head>
 <body>
   <div class="container">
     <h1>CasparCG AMCP Command Sender</h1>
     <form action="/send-command" method="POST">
+      <label for="presetCommands">Vordefinierte Befehle:</label>
+      <select id="presetCommands" onchange="setCommand()">
+        <option value="">--Wähle einen Befehl--</option>
+        <option value='INFO'>INFO</option>
+        <option value='CLEAR 1'>CLEAR 1</option>
+        <option value='PLAY 1-1'>PLAY 1-1</option>
+        <option value='LOADBG 1-1 "AMB" LOOP'>LOADBG 1-1 &quot;AMB&quot; LOOP</option>
+        <option value='CG 1-40 ADD 1 &quot;LOWERTHIRD_VER08_FONTSEMBEDDED&quot; 1 &quot;<templateData><componentData id=\&quot;_left/right\&quot;><data id=\&quot;text\&quot; value=\&quot;1\&quot;/></componentData><componentData id=\&quot;_firstLine\&quot;><data id=\&quot;text\&quot; value=\&quot;Max Mustermann\&quot;/></componentData><componentData id=\&quot;_secondLine\&quot;><data id=\&quot;text\&quot; value=\&quot;Arbeiten ist nichts für ihn\&quot;/></componentData></templateData>&quot;\r\n'>
+          Channel 1, Video Layer 40, Hinzufügen, Flashlayer 1, LowerThird Template, Templatedaten als nicht json</option>
+        <option value='CG 1-40 ADD 1 &quot;LOWERTHIRD_VER08_FONTSEMBEDDED&quot; 1 &quot;{\&quot;_left/right\&quot;:\&quot;1\&quot;,\&quot;_firstLine\&quot;:\&quot;Max Mustermann\&quot;,\&quot;_secondLine\&quot;:\&quot;Arbeiten ist nichts für ihn\&quot;}&quot;\r\n'>
+          Channel 1, Video Layer 40, Hinzufügen, Flashlayer 1, LowerThird Template, Templatedaten als json</option>
+        <option value='CG 1-40 STOP 1\r\n'>
+          Channel 1, Video Layer 40, Stoppen, Flashlayer 1</option>
+        <!-- Weitere Befehle können hier hinzugefügt werden -->
+      </select>
+
       <label for="command">AMCP Command:</label>
-      <input type="text" id="command" name="command" required placeholder="z.B. INFO">
+      <input type="text" id="command" name="command" required placeholder="Gib deinen Befehl ein oder wähle einen aus">
+      
       <button type="submit">Senden</button>
     </form>
 
@@ -21,6 +46,17 @@
         <pre><%= response %></pre>
       </div>
     <% } %>
+  </div>
+
+  <div class="container">
+    <h2>Weitere Informationen zum AMCP Protokoll</h2>
+    <p>Mehr Informationen zum AMCP (Advanced Media Control Protocol), Befehle die von CasparCG verwendet werden, gibt es zum Beispiel:</p>
+    <p>In der Dokumentation: <a href="https://github.com/CasparCG/help/wiki/AMCP-Protocol">Github ACMP Documentation</a></p>
+    <p>Im CasparCG Forum: <a href="https://casparcgforum.org/">Casparforum</a></p>
+    <p>Der Server loggt jeden Befehl den er bekommt in der Serverkonsole vom Launcher, also auch Befehle die er vom Standartclient bekommt.</p>
+    
+
+
   </div>
 </body>
 </html>
